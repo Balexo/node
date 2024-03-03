@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <title> <%= title %></title>
+  <body>
+    <h1> <%= title %></h1>
+
+    <p>Tienda de productos de segunda mano</p>
+
+    <% results.forEach(function(product) { %>
+      <h2><%= product.name %></h2>
+      <p>Venta: <%= product.sales %></p>
+      <p>Precio: <%= product.price %></p>
+      <img src="<%= product.picture %>" alt="<%= product.name %>">
+      <p>Tags: <%= product.tags.join(', ') %></p>
+    <% }); %>
+
+    <p><% if (results.length===0) {%>
+      No hay productos
+      <% } %></p>
+  </body>
+  
+  </body>
+  </html>

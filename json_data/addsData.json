@@ -1,0 +1,223 @@
+[{
+    "name": "patinete",
+    "sales": true,
+    "price": 230.15,
+    "photo": "patinete.jpg",
+    "tags": [
+        "lifestyle",
+        "motor"
+    ]
+},
+{
+    "name": "iPhone 3GS",
+    "sales": false,
+    "price": 50,
+    "photo": "iphone.png",
+    "tags": [
+        "lifestyle",
+        "mobile"
+    ]
+},
+{
+    "name": "nintendo switch",
+    "sales": true,
+    "price": 20,
+    "photo": "nintendo.jpg",
+    "tags": [
+        "lifestyle",
+        "mobile"
+    ]
+},
+{
+    "name": "cinta de correr",
+    "sales": true,
+    "price": 135,
+    "photo": "cinta_de_correr.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "cadenas de nieve",
+    "sales": true,
+    "price": 42,
+    "photo": "cadenas_de_nieve.jpg",
+    "tags": [
+        "motor"
+    ]
+},
+{
+    "name": "volante",
+    "sales": true,
+    "price": 492,
+    "photo": "volante.jpg",
+    "tags": [
+        "motor"
+    ]
+},
+{
+    "name": "tractorcarro pasquali",
+    "sales": true,
+    "price": 1992,
+    "photo": "tractorcarro_pasquali.jpg",
+    "tags": [
+        "motor"
+    ]
+},
+{
+    "name": "moto honda",
+    "sales": false,
+    "price": 1500,
+    "photo": "moto_honda.jpg",
+    "tags": [
+        "motor"
+    ]
+},
+{
+    "name": "radio philips",
+    "sales": true,
+    "price": 40,
+    "photo": "radio_philips.jpg",
+    "tags": [
+        "motor"
+    ]
+},
+{
+    "name": "silla comedor concept",
+    "sales": true,
+    "price": 340,
+    "photo": "silla_comedor.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "muebles terraza",
+    "sales": true,
+    "price": 140,
+    "photo": "muebles_terraza.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "mueble tv",
+    "sales": true,
+    "price": 210,
+    "photo": "mueble_tv.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "mueble zapatero",
+    "sales": false,
+    "price": 20,
+    "photo": "mueble_zapatero.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "espejo pared",
+    "sales": false,
+    "price": 40,
+    "photo": "espejo_pared.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "teclado gaming",
+    "sales": true,
+    "price": 140,
+    "photo": "teclado.jpg",
+    "tags": [
+        "lifestyle",
+        "work"
+    ]
+},
+{
+    "name": "monitor PC 39 pulgadas ",
+    "sales": true,
+    "price": 240,
+    "photo": "monitor.jpg",
+    "tags": [
+        "lifestyle",
+        "work"
+    ]
+},
+{
+    "name": "impresora HP",
+    "sales": false,
+    "price": 40,
+    "photo": "impresora.jpg",
+    "tags": [
+        "lifestyle",
+        "work"
+    ]
+},
+{
+    "name": "traje foliada",
+    "sales": true,
+    "price": 240,
+    "photo": "traje_foliada.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "perfume guerlain",
+    "sales": true,
+    "price": 100,
+    "photo": "perfume_guerlain.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "reloj swatch",
+    "sales": false,
+    "price": 30,
+    "photo": "relow_swatch.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "reloj casio",
+    "sales": false,
+    "price": 30,
+    "photo": "relow_casio.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "camisa franela",
+    "sales": false,
+    "price": 39,
+    "photo": "camisa_franela.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "chaqueta north face",
+    "sales": false,
+    "price": 32,
+    "photo": "chaqueta_north_Face.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+},
+{
+    "name": "zapatillas munich",
+    "sales": false,
+    "price": 32,
+    "photo": "zapatillas_Munich.jpg",
+    "tags": [
+        "lifestyle"
+    ]
+}
+]
