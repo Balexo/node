@@ -1,58 +1,105 @@
+# API NODEPOP
+Maintains advertisements for buying or selling items and allows searching by setting filters by various criteria such as:
 
-# Nombre de la API
+- List of ads with the possibility of pagination. With filters by tag, type of ad (sale or search), price range (min. price and max. price) and item name
+- List of existing tags
+- Ad creation
 
-Mantiene anuncios de compra o venta de artículos y permite buscar como poner filtros por varios criterios tales como:(valida para desarrollos en iOS o Android)
-- Lista de anuncios con posibilidad de paginación. Con filtros por tag, tipo de anuncio
-(venta o búsqueda), rango de precio (precio min. y precio max.) y nombre de artículo
-- Lista de tags existentes
-- Creación de anuncio
+# Technologies
+Database is in Mongo DB 
+Nodejs is use to build the proyect
+NoSQLBooster 
+PostMan
 
-# NodeApp
 
-## Instalación
+# Installation
 
-1. Clona este repositorio.
-2. Ejecuta `npm install` para instalar las dependencias.
+Setted in environment variables for Android and IOS systems.
+ ` "scripts": {
+    "start": "cross-env NODEPOP_ENV=production node ./bin/www",
+    "dev": "cross-env NODEPOP_ENV=development DEBUG=nodepop:* nodemon ./bin/www"
+  } `
 
-## Uso
+1.- Clone this repository.
+2.- Run `npm install` to install the dependencies.
+3.- Install nodemon `npm nodemon --save-dev`
+4.- Install Mongoose to give structure to MongoDB `npm install mongoose`
+5.- Run dev mode in port 3000 by default: `npm run dev`
 
-    * Aviso!!!!
-    Este comando `npm run init-db` borrará la base de datos y cargará un par de anunciós automáticamente.
 
-1. Ejecuta `npm run init-db` para iniciar **UNA SOLA VEZ LA API**  y cargar un par de anuncios automáticamente. (OJO! LEER AVISO)
-2. Ejectua `npm run dev` para acceder a la API en `http://localhost:3000`.
-3. En NoSQLBooster se creará la base de datos en `localhost/dbadds/adds`
-4. El schema es:
-`nombre: String,
-venta: Boolean,
-precio: Number,
-foto: String,
-tags: [String]`
+# Starting with API
+* Warning!!!!
+This command `npm run init-db` will erase the database and automatically load a couple of ads.
 
-## API
-
-Agent list
-
-GET api/agentes
-
-```json
-
+1.- Run npm run init-db to start THE API ONCE and automatically load a bunch of ads. (EYE! READ WARNING)
+2.- Run npm run dev to access the API at http://localhost:3000.
+3.- In NoSQLBooster the database will be created at localhost/dbadds/adds
+4.- The schema is: name: String, sales: Boolean, price: Number, photo: String, tags: [String]
+```JSON
+ "_id": "65e3903571fd11524fe63bc9",
+            "name": "patinete",
+            "sales": true,
+            "price": 230.15,
+            "photo": "patinete.jpg",
+            "tags": [
+                "lifestyle",
+                "motor"
+            ],
 ```
 
-## Endpoints
+# API routes and CRUD
 
-- `/usuarios`: Obtiene una lista de usuarios.
-- `/usuarios/:id`: Obtiene un usuario específico por ID.
-- `/productos`: Obtiene una lista de productos.
+Postman can be used to test the methods. 
 
-## Contribución
+## Filters
 
-Si deseas contribuir, sigue estos pasos:
+```
+Filter by name:
+http://127.0.0.1:3000/api/adds?name=nintendo
 
-1. Haz un fork de este repositorio.
-2. Crea una nueva rama para tu función o corrección.
-3. Realiza tus cambios y crea un pull request.
+Filter by name("ni" is included in the name of product):
+http://127.0.0.1:3000/api/adds?name=ni
 
-## Licencia
+Filter by sales (boolean -true or false):
+http://127.0.0.1:3000/api/adds?sales=true
 
-Este proyecto está abierto a colaboración. 
+Filter by price:
+http://127.0.0.1:3000/api/adds?price=20
+
+Filter by range of price (returns articles between that range of prices):
+http://127.0.0.1:3000/api/adds?priceRange=5-20
+
+Filter by tags:
+http://127.0.0.1:3000/api/adds?tags=lifestyle&tags=motor
+
+Filter by id:
+http://127.0.0.1:3000/api/adds/65e3903571fd11524fe63bc9
+
+Filter by tags:
+http://127.0.0.1:3000/tags
+
+Sort by price ascending:
+http://127.0.0.1:3000/api/adds?sort=price
+
+Sort by price desscending:
+http://127.0.0.1:3000/api/adds?sort=-price
+
+Combination of filters:
+http://127.0.0.1:3000/api/adds?sales=true&tags=mobile
+
+Delete:
+http://127.0.0.1:3000/api/adds/65e3903571fd11524fe63bdc
+Reply Postman with status200
+```
+# Validations
+All included in routes/api/tags in the main method
+
+# Contribution
+If you want to contribute, follow these steps:
+
+1.-Fork this repository.
+2.- Create a new branch for your feature or fix.
+3.- Make your changes and create a pull request.
+
+# License
+This project is open to collaboration.

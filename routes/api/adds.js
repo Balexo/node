@@ -6,24 +6,29 @@ const { query, param, validationResult } = require('express-validator');
 //GET api/adds
 
 
-router.get('/', async function (req, res, next) {
+router.get('/', [
+    query('name').optional().notEmpty().withMessage("Name cannot be empty"),
+    query('price').optional().isNumeric().withMessage("Price must be a number"),
+    query('sales').optional().isIn(['true', 'false']).withMessage("Sales is boolean -true or false"),
+    query('tags').optional().isIn(['work', 'lifestyle', 'motor', 'mobile']).withMessage("Tags must be chosen from this list: 'work', 'lifestyle', 'motor', 'mobile'")
+], async function (req, res, next) {
     try{
         validationResult(req).throw();
         const filter = {};
 
         // Filters
         const filterName = req.query.name ? req.query.name.toLowerCase() : null;
-        const filterSales = req.query.sales ? req.query.sales.toLowerCase() : null; ///api/adds?price=20
-        const filterPrice = req.query.price ? req.query.price : null;
+        const filterSales = req.query.sales ? req.query.sales === 'true' : null; 
+        const filterPrice = req.query.price ? req.query.price : null; 
         const filterTags = req.query.tags ? req.query.tags.toLowerCase() : null;
-        const fiterRangePrice = req.query.price ? req.query.price : null;
+        const filterRangePrice = req.query.priceRange ? req.query.priceRange : null;
 
         //Paging
-        const skip = req.query.skip; //api/adds?skip=5&limit=10
+        const skip = req.query.skip; 
         const limit = req.query.limit;
 
         // Ordering
-        const sort = req.query.sort; //api/adds?sort=price
+        const sort = req.query.sort; 
 
         if(filterName){
             filter.name = { $regex: new RegExp(filterName), $options: 'i'};
@@ -34,15 +39,15 @@ router.get('/', async function (req, res, next) {
         }
 
         if(filterPrice){
-            filter.price = filterPrice;
+            filter.price = Number(filterPrice);
         }
 
         if(filterTags){
-            filter.tags = { $in: [filterTags]};
+            filter.tags = filterTags;
         }
 
-        if(fiterRangePrice){
-            const [minPrice, maxPrice] = fiterRangePrice.split('-').map(Number);
+        if(filterRangePrice){
+            const [minPrice, maxPrice] = filterRangePrice.split('-').map(Number);
             filter.price = {$gte: minPrice, $lte:maxPrice};
         }
 
@@ -54,10 +59,16 @@ router.get('/', async function (req, res, next) {
     }
 });
 
+
+
 //GET api/adds/<_id> Return a single add by id reference
 
-router.get('/:id', async function (req, res, next){
+router.get('/:id',[
+    param('id').isLength({min:24, max:24}).withMessage("Id is not correct or does not have 24 characters long")
+], 
+    async function (req, res, next){
     try {
+        validationResult(req).throw();
         const filterId = req.params.id;
 
         const addResult = await Adds.findById(filterId); //api/adds/65e3903571fd11524fe63bc9
@@ -90,7 +101,7 @@ module.exports = router;
 
 //DELETE api/adds/delete/<_id>
 
-router.delete('/:id', async function(req, res, next){
+router.delete('/delete/:id', async function(req, res, next){
     try {
         const id = req.params.id;
 
