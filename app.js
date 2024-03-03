@@ -23,11 +23,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas del API
-app.use('/api/adds', require('./routes/api/adds'))
+app.use('/api/adds', require('./routes/api/adds'));
+app.use('/api/tags', require('./routes/api/tags'));
 
 //Rutas del Website
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/tags', require('./routes/api/tags'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

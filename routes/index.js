@@ -5,7 +5,6 @@ const { query, validationResult } = require('express-validator');
 
 // GET home page. 
  
-
 router.get('/', async function (req, res, next) {
   try{
       validationResult(req).throw();
@@ -46,8 +45,6 @@ router.get('/', async function (req, res, next) {
       next(error);
   }
 });
-
-
 
 
 module.exports = router;
