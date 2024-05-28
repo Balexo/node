@@ -1,10 +1,12 @@
 "use strict";
 
+require("dotenv").config();
+
 const connection = require("./lib/connectMongoose");
 const Adds = require("./models/add");
 const readline = require("node:readline");
 const fs = require("fs");
-const { add, user } = require("./models");
+const { Add, User } = require("./models");
 
 main().catch((err) => console.log("Hubo un error", err));
 
@@ -33,13 +35,20 @@ function data() {
 }
 
 async function initUsers() {
-  const { userData: usersData } = data();
+  const { userData: usersData } = data(); // usersData -> {email: "user@example.com, password: "1234"}
+  console.log(usersData);
   //delete all users
   const deleted = await User.deleteMany();
-  console.log(`${deleted.length} users were deleted`);
+  console.log(`${deleted.deletedCount} users were deleted`);
 
   //create initial users
-  const inserted = await User.insertMany(usersData);
+  const inserted = await Promise.all(
+    usersData.map(async (user) => {
+      user.password = await User.hashPassword(user.password);
+      await User.insertMany(user);
+      return user;
+    }),
+  );
   console.log(`There is ${inserted.length} new users created.`);
 }
 

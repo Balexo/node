@@ -3,6 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const jwtAuth = require("./lib/jwtAuthMiddleware");
+const LoginController = require("./controllers/LoginController");
+
+const loginController = new LoginController();
 
 require("./lib/connectMongoose");
 
@@ -21,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Rutas del API
+app.post("/api/login", loginController.postAPIJWT);
 app.use("/api/adds", require("./routes/api/adds"));
 app.use("/api/tags", require("./routes/api/tags"));
 app.use("/api/users", require("./routes/api/users"));
