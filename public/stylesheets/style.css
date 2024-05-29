@@ -1,5 +1,4 @@
 body {
-  
   font-size: 2em;
   margin-block-start: 0.8em;
   margin-block-end: 0.8em;
@@ -8,7 +7,11 @@ body {
   font-weight: bold;
   padding: 50px;
   margin-left: 50px;
-  font: 34px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font:
+    34px "Lucida Grande",
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 .container {
@@ -24,5 +27,34 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.language {
+  display: flex;
+  direction: row;
+}
+
+li a:hover {
+  background-color: #111;
 }

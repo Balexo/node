@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    
-    <link rel='stylesheet' href='./stylesheets/style.css' />
-  </head>
-  <title> <%= title %></title>
-  <body>
+<%- include("header.ejs") %>
     <h1> <%= title %></h1>
 
-    <p>Tienda de productos de segunda mano</p>
+    <p><%= __("Tienda de productos de segunda mano") %></p>
 
     <div class="container">
       <% results.forEach(function(product) { %>
         <div class="item">
           <div class="item_name"><%= product.name %></div>
-          <div class="item_product">Venta: <%= product.sales %></div>
-          <div class="item_price">Precio: <%= product.price %></div>
+          <div class="item_product"><%= __("Venta:") %> <%= product.sales %></div>
+          <div class="item_price"><%= __("Precio:") %> <%= product.price %></div>
           <img src="<%= product.picture %>" alt="<%= product.name %>">
-          <p>Tags: <%= product.tags.join(', ') %></p>
+          <p><%= __("Tags:") %> <%= product.tags.join(', ') %></p>
         </div>
       <% }); %>
     
       <% if (results.length === 0) { %>
-        <p>No hay productos</p>
+        <p><%= __("No hay productos") %></p>
       <% } %>
     </div>
     

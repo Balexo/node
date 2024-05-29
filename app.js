@@ -6,8 +6,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const jwtAuth = require("./lib/jwtAuthMiddleware");
 const LoginController = require("./controllers/LoginController");
+const i18n = require("./lib/i18nConfigure");
+const session = require("express-session");
+const LangController = require("./controllers/LangController");
 
 const loginController = new LoginController();
+const langController = new LangController();
 
 require("./lib/connectMongoose");
 
@@ -32,6 +36,8 @@ app.use("/api/tags", require("./routes/api/tags"));
 app.use("/api/users", require("./routes/api/users"));
 
 //Rutas del Website
+app.use(i18n.init);
+app.get("/change-locale/:locale", langController.changeLocale);
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/api/users"));
 app.use("/tags", require("./routes/api/tags"));

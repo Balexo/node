@@ -1,64 +1,77 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const Adds = require('../models/add');
-const { query, validationResult } = require('express-validator');
+const Adds = require("../models/add");
+const { query, validationResult } = require("express-validator");
 
-// GET home page. 
- 
-router.get('/', [
-    query('name').optional().notEmpty().withMessage("Name cannot be empty"),
-    query('price').optional().isNumeric().withMessage("Price must be a number"),
-    query('sales').optional().isIn(['true', 'false']).withMessage("Sales is boolean -true or false"),
-    query('tags').optional().isIn(['work', 'lifestyle', 'motor', 'mobile']).withMessage("Tags must be chosen from this list: 'work', 'lifestyle', 'motor', 'mobile'")
-], async function (req, res, next) {
-    try{
-        validationResult(req).throw();
-        const filter = {};
+// GET home page.
 
-        // Filters
-        const filterName = req.query.name ? req.query.name.toLowerCase() : null;
-        const filterSales = req.query.sales ? req.query.sales === 'true' : null; 
-        const filterPrice = req.query.price ? req.query.price : null; 
-        const filterTags = req.query.tags ? req.query.tags.toLowerCase() : null;
-        const filterRangePrice = req.query.priceRange ? req.query.priceRange : null;
+router.get(
+  "/",
+  [
+    query("name").optional().notEmpty().withMessage("Name cannot be empty"),
+    query("price").optional().isNumeric().withMessage("Price must be a number"),
+    query("sales")
+      .optional()
+      .isIn(["true", "false"])
+      .withMessage("Sales is boolean -true or false"),
+    query("tags")
+      .optional()
+      .isIn(["work", "lifestyle", "motor", "mobile"])
+      .withMessage(
+        "Tags must be chosen from this list: 'work', 'lifestyle', 'motor', 'mobile'",
+      ),
+  ],
+  async function (req, res, next) {
+    try {
+      validationResult(req).throw();
+      const filter = {};
 
-        //Paging
-        const skip = req.query.skip; 
-        const limit = req.query.limit;
+      // Filters
+      const filterName = req.query.name ? req.query.name.toLowerCase() : null;
+      const filterSales = req.query.sales ? req.query.sales === "true" : null;
+      const filterPrice = req.query.price ? req.query.price : null;
+      const filterTags = req.query.tags ? req.query.tags.toLowerCase() : null;
+      const filterRangePrice = req.query.priceRange
+        ? req.query.priceRange
+        : null;
 
-        // Ordering
-        const sort = req.query.sort; 
+      //Paging
+      const skip = req.query.skip;
+      const limit = req.query.limit;
 
-        if(filterName){
-            filter.name = { $regex: new RegExp(filterName), $options: 'i'};
-        }
+      // Ordering
+      const sort = req.query.sort;
 
-        if(filterSales){
-            filter.sales = filterSales;
-        }
+      if (filterName) {
+        filter.name = { $regex: new RegExp(filterName), $options: "i" };
+      }
 
-        if(filterPrice){
-            filter.price = Number(filterPrice);
-        }
+      if (filterSales) {
+        filter.sales = filterSales;
+      }
 
-        if(filterTags){
-            filter.tags = filterTags;
-        }
+      if (filterPrice) {
+        filter.price = Number(filterPrice);
+      }
 
-        if(filterRangePrice){
-            const [minPrice, maxPrice] = filterRangePrice.split('-').map(Number);
-            filter.price = {$gte: minPrice, $lte:maxPrice};
-        }
+      if (filterTags) {
+        filter.tags = filterTags;
+      }
 
-        const addsResults = await Adds.toList(filter, skip, limit, sort);
-        res.render('index', {title: 'Nodepop', results : addsResults});
+      if (filterRangePrice) {
+        const [minPrice, maxPrice] = filterRangePrice.split("-").map(Number);
+        filter.price = { $gte: minPrice, $lte: maxPrice };
+      }
 
-    } catch (error){
-        next(error);
+      const addsResults = await Adds.toList(filter, skip, limit, sort);
+      res.render("index", {
+        title: req.__("Nodepop - your thrift store"),
+        results: addsResults,
+      });
+    } catch (error) {
+      next(error);
     }
-});
-
-
-
+  },
+);
 
 module.exports = router;

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+  </head>
+  <nav>
+    <ul>
+      <li><a class="active">Home</a></li>
+      <li><a href="#news">Products</a></li>
+      <li class="language"> <% getLocales().forEach(locale => { %>
+        <a href="/change-locale/<%= locale %>"><%= locale %></a>
+    <% }) %></li>
+        
+    </ul>
+  </nav>
+  <body></body>
+</html>
