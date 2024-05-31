@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //Rutas del API
 app.post("/api/login", loginController.postAPIJWT);
 app.use("/api/adds", jwtAuth, require("./routes/api/adds"));
+app.use("/api/createAd", jwtAuth, require("./routes/api/createAd"));
 app.use("/api/tags", require("./routes/api/tags"));
 app.use("/api/users", require("./routes/api/users"));
 
