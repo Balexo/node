@@ -7,7 +7,6 @@ var logger = require("morgan");
 const jwtAuth = require("./lib/jwtAuthMiddleware");
 const LoginController = require("./controllers/LoginController");
 const i18n = require("./lib/i18nConfigure");
-const session = require("express-session");
 const LangController = require("./controllers/LangController");
 
 const loginController = new LoginController();
