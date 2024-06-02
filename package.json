@@ -5,7 +5,9 @@
   "scripts": {
     "start": "cross-env NODEAPP_ENV=production node ./bin/www",
     "dev": "cross-env NODEAPP_ENV=development DEBUG=nodeapp:* nodemon ./bin/www",
-    "init-db": "node init-db.js"
+    "init-db": "node init-db.js",
+    "img-req": "npx nodemon ./routes/api/createAd.js",
+    "img-res": "npx nodemon ./microservice-thumbnail/conversionImageResponder.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

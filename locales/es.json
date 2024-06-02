@@ -1,12 +1,22 @@
 {
+  "404": 404,
   "Tienda de productos de segunda mano": "Tienda de productos de segunda mano",
   "No hay productos": "No hay productos",
   "Venta:": "Venta:",
   "Precio:": "Precio:",
-  "Tags:": "Tags:",
+  "Tags:": "Categorías:",
   " product.name": " product.name",
   "productName": "productName",
   "product.name": "product.name",
   "Nodepop art": "Nodepop art",
-  "Nodepop - your thrift store": "Nodepop - tu tienda de segunda mano"
+  "Nodepop - your thrift store": "Nodepop - tu tienda de segunda mano",
+  "Venta": "Venta",
+  "Busco": "Busco",
+  "An error occurred!": "Ha ocurrido un error",
+  "Not Found": "No encontrada",
+  "Info of error:": "Información del error:",
+  "There is an error under status: ": "Hay un error con estatus: ",
+  "Message:": "Mensaje:",
+  "Home": "Inicio",
+  "Products": "Productos"
 }

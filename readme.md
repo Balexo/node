@@ -1,40 +1,21 @@
 # API NODEPOP
+
 Maintains advertisements for buying or selling items and allows searching by setting filters by various criteria such as:
 
-- List of ads with the possibility of pagination. With filters by tag, type of ad (sale or search), price range (min. price and max. price) and item name
-- List of existing tags
-- Ad creation
-
 # Technologies
-Database is in Mongo DB 
-Nodejs is use to build the proyect
-NoSQLBooster 
-PostMan
 
+- Database: MongoDB
+- Backend: Node.js
+- Tools: NoSQLBooster, Postman
 
-# Installation
+## Setup and Usage
 
-Setted in environment variables for Android and IOS systems.
- ` "scripts": {
-    "start": "cross-env NODEPOP_ENV=production node ./bin/www",
-    "dev": "cross-env NODEPOP_ENV=development DEBUG=nodepop:* nodemon ./bin/www"
-  } `
+1. Clone this repository.
+2. Run `npm install` to install the dependencies.
+3. Run `npm run dev` to start the server in development mode on port 3000.
+4. (Optional) Run `npm run init-db` to initialize the database with sample data. **Warning: This will erase the existing database.**
+5. Schema of an ad:
 
-1.- Clone this repository.
-2.- Run `npm install` to install the dependencies.
-3.- Install nodemon `npm nodemon --save-dev`
-4.- Install Mongoose to give structure to MongoDB `npm install mongoose`
-5.- Run dev mode in port 3000 by default: `npm run dev`
-
-
-# Starting with API
-* Warning!!!!
-This command `npm run init-db` will erase the database and automatically load a couple of ads.
-
-1.- Run npm run init-db to start THE API ONCE and automatically load a bunch of ads. (EYE! READ WARNING)
-2.- Run npm run dev to access the API at http://localhost:3000.
-3.- In NoSQLBooster the database will be created at localhost/dbadds/adds
-4.- The schema is: name: String, sales: Boolean, price: Number, photo: String, tags: [String]
 ```JSON
  "_id": "65e3903571fd11524fe63bc9",
             "name": "patinete",
@@ -47,59 +28,36 @@ This command `npm run init-db` will erase the database and automatically load a 
             ],
 ```
 
+## Features
+
+- List of ads with pagination and filters (tag, type, price range, name).
+- List of existing tags.
+- Ad creation.
+
+# Authentication
+
+This project uses JSON Web Tokens (JWT) for authentication. The `jwtAuthMiddleware` verifies the JWT provided in the request. If the token is not provided or is invalid, it sends a 401 error. If the token is valid, it adds the user ID from the token payload to the request object.
+
+## Routes
+
+The routes for the API are defined in app.js. The jwtAuthMiddleware is used in the routes for /api/adds and /api/createAd to protect these routes
+
 # API routes and CRUD
 
-Postman can be used to test the methods. 
+Postman can be used to test the methods. Check the `API-Guide.md` for detailed information on API routes and CRUD operations
 
-## Filters
+# Microservices
 
-```
-Filter by name:
-http://127.0.0.1:3000/api/adds?name=nintendo
+This project contains microservice to transform an image in thumbnail 100x100px: `img-res` and `create-ad`. Use `npm run img-res` and `npm run create-ad` to start these services in development mode. Both need to be run at the sime time.
 
-Filter by name("ni" is included in the name of product):
-http://127.0.0.1:3000/api/adds?name=ni
+# Localization
 
-Filter by sales (boolean -true or false):
-http://127.0.0.1:3000/api/adds?sales=true
-
-Filter by price:
-http://127.0.0.1:3000/api/adds?price=20
-
-Filter by range of price (returns articles between that range of prices):
-http://127.0.0.1:3000/api/adds?priceRange=5-20
-
-Filter by tags:
-http://127.0.0.1:3000/api/adds?tags=lifestyle&tags=motor
-
-Filter by id:
-http://127.0.0.1:3000/api/adds/65e3903571fd11524fe63bc9
-
-Filter by tags:
-http://127.0.0.1:3000/tags
-
-Sort by price ascending:
-http://127.0.0.1:3000/api/adds?sort=price
-
-Sort by price desscending:
-http://127.0.0.1:3000/api/adds?sort=-price
-
-Combination of filters:
-http://127.0.0.1:3000/api/adds?sales=true&tags=mobile
-
-Delete:
-http://127.0.0.1:3000/api/adds/65e3903571fd11524fe63bdc
-Reply Postman with status200
-```
-# Validations
-All included in routes/api/tags in the main method
+This project uses the `i18n` module for localization. The locales directory contains the translation files for each supported locale.
 
 # Contribution
-If you want to contribute, follow these steps:
 
-1.-Fork this repository.
-2.- Create a new branch for your feature or fix.
-3.- Make your changes and create a pull request.
+If you want to contribute, fork this repository, create a new branch for your feature or fix, make your changes, and create a pull request.
 
 # License
+
 This project is open to collaboration.

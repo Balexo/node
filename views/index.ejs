@@ -1,4 +1,5 @@
 <%- include("header.ejs") %>
+
     <h1> <%= title %></h1>
 
     <p><%= __("Tienda de productos de segunda mano") %></p>
@@ -7,9 +8,9 @@
       <% results.forEach(function(product) { %>
         <div class="item">
           <div class="item_name"><%= product.name %></div>
-          <div class="item_product"><%= __("Venta:") %> <%= product.sales %></div>
-          <div class="item_price"><%= __("Precio:") %> <%= product.price %></div>
-          <img src="<%= product.picture %>" alt="<%= product.name %>">
+          <%= product.sales  === true ? __("Venta") : __("Busco")%>
+          <div class="item_price"><%= __("Precio:") %> <%= product.price %>€</div>
+          <img src="/thumbnails/<%=product.photo %>" alt="<%= product.name %>">
           <p><%= __("Tags:") %> <%= product.tags.join(', ') %></p>
         </div>
       <% }); %>

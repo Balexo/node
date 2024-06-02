@@ -26,6 +26,8 @@ responder.on("transform-image", async (req, done) => {
     );
     await imageSelected.writeAsync(thumbnailLocation);
 
+    console.log(Date.now(), "image transformed", thumbnailLocation);
+
     done(thumbnailLocation);
   } catch (error) {
     console.error("Error during image transformation:", error);

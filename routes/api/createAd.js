@@ -17,17 +17,18 @@ router.post("/", upload.single("photo"), async function (req, res, next) {
     const adSaved = await ad.save();
 
     const requester = new Requester({ name: "thumbnail" });
-    console.log(req.file.filename);
 
     const event = {
       type: "transform-image",
       image: req.file.filename,
-      from: "image",
-      to: "thumbnail",
     };
 
     requester.send(event, (result) => {
-      console.log(Date.now(), "Image transform to thumbnail:", result);
+      console.log(
+        Date.now(),
+        "Image transform to thumbnail:",
+        req.file.filename,
+      );
     });
 
     res.json({ result: adSaved });
