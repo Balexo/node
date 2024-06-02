@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const Adds = require("../../models/add");
 const { query, param, validationResult } = require("express-validator");
+const fs = require("fs");
+const path = require("path");
 
 //GET api/adds
 
@@ -99,6 +101,28 @@ router.get(
 router.delete("/delete/:id", async function (req, res, next) {
   try {
     const id = req.params.id;
+
+    const ad = await Adds.findOne({ _id: id });
+
+    if (ad && ad.photo) {
+      fs.unlink(
+        path.join(__dirname, "..", "..", "public", "images", ad.photo),
+        (err) => {
+          if (err) {
+            console.log("Image not deleted", err);
+          }
+        },
+      );
+
+      fs.unlink(
+        path.join(__dirname, "..", "..", "public", "thumbnails", ad.photo),
+        (err) => {
+          if (err) {
+            console.log("Image not deleted", err);
+          }
+        },
+      );
+    }
 
     await Adds.deleteOne({ _id: id });
 
