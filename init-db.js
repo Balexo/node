@@ -12,7 +12,7 @@ async function main(){
     //Esperar que se conecta a la BD
     await new Promise((resolve) => connection.once('open', resolve));
 
-    const borrar = await questionAsked("Would you like to delate DB? (No means you do not delate it)");
+    const borrar = await questionAsked("Would you like to delate DB? (Yes to delete and nos means you do not delate it)");
     if(!borrar){
         console.log("Process canceled. DB was NOT deleted.");
         process.exit();
